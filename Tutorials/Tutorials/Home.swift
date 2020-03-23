@@ -21,6 +21,7 @@ struct CategoryHome: View {
     }
     
     @State var showingProfile = false
+    @EnvironmentObject var userData: UserData
     
     //profileButton을 누르면 showingProfile이 변경됨
     var profileButton: some View{
@@ -57,7 +58,8 @@ struct CategoryHome: View {
             .navigationBarTitle(Text("Featrued"))
             .navigationBarItems(trailing: profileButton)
             .sheet(isPresented: $showingProfile) {
-                Text("User Profile")
+                ProfileHost()
+                    .environmentObject(self.userData)
             }
         }
     }
