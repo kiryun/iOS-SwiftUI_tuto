@@ -6,12 +6,12 @@ Helpers for loading images and data.
 */
 
 import Foundation
-import UIKit
-import SwiftUI
 import CoreLocation
+import SwiftUI
+import ImageIO
 
 let landmarkData: [Landmark] = load("landmarkData.json")
-let features = landmarkData.filter{ $0.isFeatured }
+let features = landmarkData.filter { $0.isFeatured }
 let hikeData: [Hike] = load("hikeData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
@@ -47,7 +47,7 @@ final class ImageStore {
     func image(name: String) -> Image {
         let index = _guaranteeImage(name: name)
         
-        return Image(images.values[index], scale: CGFloat(ImageStore.scale), label: Text(verbatim: name))
+        return Image(images.values[index], scale: CGFloat(ImageStore.scale), label: Text(name))
     }
 
     static func loadImage(name: String) -> CGImage {
@@ -68,3 +68,4 @@ final class ImageStore {
         return images.index(forKey: name)!
     }
 }
+

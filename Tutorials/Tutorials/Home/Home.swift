@@ -51,7 +51,7 @@ struct CategoryHome: View {
                 //Feature의 가장자리의 공백을 0으로 만든다.
                 .listRowInsets(EdgeInsets())
                 
-                NavigationLink(destination: LandmarkList()){
+                NavigationLink(destination: LandmarkList{ LandmarkDetail(landmark: $0) }){
                     Text("See All")
                 }
             }
